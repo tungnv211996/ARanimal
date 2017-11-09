@@ -4,14 +4,14 @@ const animalModel = require('../model/animal.model');
 
 module.exports = { 
     createAnimal: function(req,res){
-        console.log(JSON.stringify(req.body));
+        console.log(JSON.stringify(req.body.stateAnimal));
         var animal = new animalModel({
         _id: new ObjectID(),
         nameAnimal: req.body.nameAnimal,
-        statusAnimal: req.body.statusAnimal,
-        costAnimal: 0,
-        areaAnimal: "ocen",
-        summaryAnimal: "no",
+        stateAnimal: req.body.stateAnimal,
+        costAnimal: req.body.costAnimal,
+        areaAnimal: req.body.areaAnimal,
+        summaryAnimal: req.body.summaryAnimal,
         urlAnimal: [{url: String}]
         }).save(function(err){
             if(err){
@@ -25,7 +25,7 @@ module.exports = {
     },
 
     findAnimal: function(req, res) {
-        animalModel.find(function(err, animals) {
+        animalModel.find({}, function(err, animals) {
           if (err) {
             return res.status(500).json({
               err: err || err.errmessage
@@ -37,9 +37,9 @@ module.exports = {
           }
         });
       },
-
+    //Edit animal function. Client must to submit all properties.
     editAnimal: function(req, res){
-        console.log(JSON.stringify(req.params.nameAnimal));
+        console.log(JSON.stringify(req.params.idAnimal));
         var id = req.params.idAnimal;
         var o_id = new ObjectID(id);
         animalModel.collection.update(
@@ -47,11 +47,11 @@ module.exports = {
             {
                 //$inc: {costAnimal: 5},
                 $set: {
-                    nameAnimal: req.params.nameAnimal,    
-                    //statusAnimal: "active",
-                    costAnimal: req.params.costAnimal,
-                    areaAnimal: req.params.areaAnimal,
-                    summaryAnimal: req.params.areaAnimal,
+                    nameAnimal: req.body.nameAnimal,    
+                    //stateAnimal: "active",
+                    costAnimal: req.body.costAnimal,
+                    areaAnimal: req.body.areaAnimal,
+                    summaryAnimal: req.body.summaryAnimal,
                 }
             },
             function(err){
@@ -61,12 +61,12 @@ module.exports = {
             });
         }else{
             return res.status(200).json({
-                message: 'You have successfully update a animal'
+                message: 'You have successfully edition a animal'
             });
         }
     })
 },
-
+    //set stateAnimal from "active" to "non-active"
     deleteAnimal: function(req, res){
         console.log(JSON.stringify(req.params.idAnimal));
         var id = req.params.idAnimal;
@@ -74,10 +74,9 @@ module.exports = {
         animalModel.collection.update(
             {_id: o_id},
             {
-                //$inc: {costAnimal: 5},
+               //$inc: {costAnimal: 5},
                 $set: {
-                    statusAnimal: "active",
-                   // nameAnimal: "dog"
+                    stateAnimal: "non-active",
             }
             },
             function(err){

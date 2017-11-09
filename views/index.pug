@@ -1,68 +1,72 @@
-doctype html
-html
-  head
-    meta(charset='utf-8')
-    script(src='https://code.jquery.com/jquery-2.2.3.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js')
-    script(src='./javascripts/script.js')
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css')
-    link(rel='stylesheet', href='stylesheets/style.css')
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title ARanimal
-  body
-    .row
-      nav
-        .nav-wrapper.pink.darken-4(class='#ff4081')
-          a#font.brand-logo(href='#') RegisterAPP
-          a.button-collapse(href='#', data-activates='nav-side')
-            i.material-icons menu
-          ul#nav-mobile.right.hide-on-med-and-down
-            li
-              a.get-started GET STARTED
-          ul#nav-side.side-nav
-            li
-              a.get-started GET STARTED
-      #o.row
-        #black
-          #back
-          .content
-            .row
-              .col.s12
-               
-      #p.row
-        h4#register.col.s12 Register Attendee: 
-        form.col.s12
+extends layout
+
+block content
+  .row
+    nav
+      .nav-wrapper.pink.darken-4(class='#ff4081')
+        a#font.brand-logo(href='#') ARanimal
+        a.button-collapse(href='#', data-activates='nav-side')
+          i.material-icons menu
+        ul#nav-mobile.right.hide-on-med-and-down
+          li
+            a.get-started GET STARTED
+        ul#nav-side.side-nav
+          li
+            a.get-started GET STARTED
+    #o.row
+      #black
+        #back
+        .content
           .row
-            .input-field.col.s11.m8.l6
-              input#attendee(type='text')
-              label(for='attendee')  Attendee 
-          .row
-            .input-field.col.s11.m8.l6
-              input#email(type='email')
-              label(for='email')  Email 
-          .row
-            .input-field.col.s12
-              a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
-        .container.centered
-          a#get-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') View all
-        br
-        hr
-        .col.s12
-          table#list.striped
-            thead
-              tr
-                th Name
-                th Email
-                th Venue
-                th Day
-                td
-            tbody
-              tr
-                td.name Gertrude
-                td gertienyesh@gmail.com
-                td Andela
-                td Saturday
-                td
-                td
-                  i.material-icons.delete delete
+            .col.s12
+              
+    #p.row
+      h4#register.col.s12 ARanimal: 
+      form.col.s12
+        .row
+          .input-field.col.s11.m8.l6
+            input#nameAnimal(type='text')
+            label(for='nameAnimal')  Name Animal
+        .row
+          .input-field.col.s11.m8.l6
+            input#stateAnimal(type='text')
+            label(for='stateAnimal')  State
+        .row
+          .input-field.col.s11.m8.l6
+            input#costAnimal(type='number')
+            label(for='costAnimal')  Cost
+        .row
+          .input-field.col.s11.m8.l6
+            input#areaAnimal(type='text')
+            label(for='areaAnimal')  Area
+        .row
+          .input-field.col.s11.m8.l6
+            input#summaryAnimal(type='text')
+            label(for='summaryAnimal')  Summary
+        .row
+          .input-field.col.s12
+            a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
+      .container.centered
+        a#get-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') View all
+      br
+      hr
+      .col.s12
+        table#list.striped
+          thead
+            tr
+              th Name 
+              th State
+              th Cost
+              th Area
+              th Summary
+              th
+          tbody
+            tr
+              td.name 
+              td 
+              td 
+              td 
+              td
+              td
+                //- i.material-icons.delete delete
+                //- i.material-icons.edit edit

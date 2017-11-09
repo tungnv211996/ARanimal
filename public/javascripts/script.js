@@ -16,11 +16,13 @@ $(function () {
             data.forEach(function print(animal) {
               $('tbody').append(
                 '<tr>' +
-                "<td class='name'>" + animal.nameAnimal +"</td>" +
-                "<td class='email'>" + animal.statusAnimal + "</td>" +
-                '<td>Andela</td>' +
-                '<td>Saturday</td>' +
+                "<td class='nameAnimal'>" + animal.nameAnimal +"</td>" +
+                "<td class='stateAnimal'>" + animal.stateAnimal + "</td>" +
+                "<td class='costAnimal'>" + animal.costAnimal + "</td>" + 
+                "<td class='areaAnimal'>" + animal.areaAnimal + "</td>" + 
+                "<td class='summaryAnimal'>" + animal.summaryAnimal + "</td>" + 
                 "<td><i class='material-icons delete'>delete</i></td>" +
+                "<td><i class='material-icons edit'>edit</i></td>" +
                 "<td class='idAnimal' hidden>"+animal._id+"</td>"+
               '</tr>'
               );
@@ -32,15 +34,18 @@ $(function () {
       // POST function
       $(document).on('click', '#post-button', function() {
         // Get the value from form
-        var name = $('#attendee').val();
-        var status = $('#email').val();
+        var name = $('#nameAnimal').val();
+        var state = $('#stateAnimal').val();
+        var cost = $('#costAnimal').val();
+        var area = $('#areaAnimal').val();
+        var summary = $('#summaryAnimal').val();
       
-          // Post value if user has filled name
+          // Post value
           $.ajax({
             url: '/api/save',
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({nameAnimal: name, statusAnimal:status}),
+            data: JSON.stringify({nameAnimal: name, stateAnimal:state, costAnimal: cost, areaAnimal: area, summaryAnimal: summary}),
             success: function(response) {
               $('#get-button').trigger('click');
               Materialize.toast(response.message, 4000);
@@ -64,7 +69,26 @@ $(function () {
         });
       });
       //EDIT button
-      
+      $(document).on('click', '.edit', function() {
+        var editAnimal = $(this).closest('tr');
+        var idAnimal = editAnimal.find('.idAnimal').text();
+        var name = editAnimal.find('.nameAnimal').text();
+        var state = editAnimal.find('.stateAnimal').text();
+        var cost = editAnimal.find('.costAnimal').text();
+        var area = editAnimal.find('.areaAnimal').text();
+        var summary = editAnimal.find('.summaryAnimal').text();
+        //$('#p').hide();
+        $.ajax({
+          url: '/api/edit/'+idAnimal,
+          method: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify({nameAnimal: name, stateAnimal:state, costAnimal: cost, areaAnimal: area, summaryAnimal: summary}),
+          success: function(response) {
+            Materialize.toast(response.message, 4000);
+            $('#get-button').trigger('click');
+          }
+        });
+      });
     
       // GET STARTED button function
       $('.get-started').on('click', function() {
@@ -76,7 +100,7 @@ $(function () {
         $('.button-collapse').hide();
       });
     
-      // Function to validate the email entered. Used in POST 
+      // Function to validate the email entered.
       function validateEmail(email) {
          var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
          if (reg.test(email)) {

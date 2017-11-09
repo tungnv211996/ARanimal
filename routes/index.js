@@ -15,6 +15,7 @@ router.get('/',[function(req, res, next) {
 router.get('/api/view', arudController.findAnimal);
 /*Delete animal*/
 router.put('/api/delete/:idAnimal', arudController.deleteAnimal);
+//Edit animal
 router.put('/api/edit/:idAnimal', arudController.editAnimal)
   
 module.exports = router;

@@ -6,11 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-var crudAnimal = require('./controllers/crudAnimal.controllers')
 
 var app = express();
-
 
 var mongoose = require('mongoose');
 Promise = require('bluebird'); // // make bluebird default Promise eslint-disable-line no-global-assign
@@ -44,9 +41,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
  app.use('/', index);
- app.use('/users', users);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

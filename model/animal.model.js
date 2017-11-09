@@ -5,7 +5,7 @@ var schema = mongoose.Schema;
 var animalSchema = new schema({
     _id: schema.Types.ObjectId,
     nameAnimal: String,
-    statusAnimal: String,
+    stateAnimal: String,
     costAnimal: Number,
     areaAnimal: String,
     summaryAnimal: String,

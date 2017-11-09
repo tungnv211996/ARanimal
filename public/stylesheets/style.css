@@ -53,6 +53,9 @@
   cursor: pointer;
 }
 
+.edit {
+  cursor: pointer;
+}
 .centered {
   display: flex;
   justify-content: center;
