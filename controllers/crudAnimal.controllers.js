@@ -29,13 +29,13 @@ module.exports = {
           if (err) {
             return res.status(500).json({
               err: err || err.errmessage
-            });
+            })
           } else {
             return res.status(200).json({
               animals: animals
-            });
+            })
           }
-        });
+        })
       },
     //Edit animal function. Client must to submit all properties.
     editAnimal: function(req, res){
@@ -77,7 +77,7 @@ module.exports = {
                //$inc: {costAnimal: 5},
                 $set: {
                     stateAnimal: "non-active",
-            }
+                }
             },
             function(err){
             if (err) {

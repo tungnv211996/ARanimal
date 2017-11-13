@@ -7,9 +7,7 @@ const arudController = require('../controllers/crudAnimal.controllers')
 router.post('/api/save',arudController.createAnimal );
 
 /* Get page*/
-router.get('/',[function(req, res, next) {
-     res.render('index');
-     }, arudController.findAnimal]);
+router.get('/',[function(req, res, next) {res.render('index');}, arudController.findAnimal]);
  
 /* Get animal*/
 router.get('/api/view', arudController.findAnimal);

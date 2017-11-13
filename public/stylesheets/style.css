@@ -1,18 +1,18 @@
 @font-face {
   font-family: 'coffeeatmidnight';
-  src: url('../fonts/Coffee At Midnight Demo.ttf') format('truetype');
+  src: format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'learningcurve';
-  src: url('../fonts/LearningCurve.ttf') format('truetype');
+  src: format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 /*nav .brand-logo {
-  left: 3%;
+  left: 3%;np
 }
 */
 #black {
@@ -20,7 +20,6 @@
 }
 
 #back {
- background: url("../images/rejista.jpeg");
  background-size: cover;
  background-position: center center;
  background-attachment: fixed;
@@ -45,9 +44,6 @@
   color: #fff;
 }
 
-#register {
-  font-family: learningcurve;
-}
 
 .delete {
   cursor: pointer;

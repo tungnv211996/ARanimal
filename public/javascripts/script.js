@@ -70,14 +70,8 @@ $(function () {
       });
       //EDIT button
       $(document).on('click', '.edit', function() {
-        var editAnimal = $(this).closest('tr');
-        var idAnimal = editAnimal.find('.idAnimal').text();
-        var name = editAnimal.find('.nameAnimal').text();
-        var state = editAnimal.find('.stateAnimal').text();
-        var cost = editAnimal.find('.costAnimal').text();
-        var area = editAnimal.find('.areaAnimal').text();
-        var summary = editAnimal.find('.summaryAnimal').text();
-        //$('#p').hide();
+        $('#p').hide();
+        $('#edit').show();
         $.ajax({
           url: '/api/edit/'+idAnimal,
           method: 'PUT',
