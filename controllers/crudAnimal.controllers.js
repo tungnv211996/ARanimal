@@ -19,7 +19,9 @@ module.exports = {
                 res.end();
             }else{
                 console.log('saved');
-                res.end();
+                return res.status(200).json({
+                    message: 'You have successfully deleted a animal'
+                });
             }
         })
     },

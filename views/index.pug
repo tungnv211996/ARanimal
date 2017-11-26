@@ -4,8 +4,8 @@ block content
   .row
     nav
       .nav-wrapper.pink.darken-4(class='#ff4081')
-        a#font.brand-logo(href='#') ARanimal
-        a.button-collapse(href='#', data-activates='nav-side')
+        a#font.brand-logo ARanimal
+        a.button-collapse( data-activates='nav-side')
           i.material-icons menu
         ul#nav-mobile.right.hide-on-med-and-down
           li
@@ -20,53 +20,31 @@ block content
           .row
             .col.s12
               
-    #p.row
-      h4.col.s12 ARanimal: 
-      form.col.s12
-        .row
-          .input-field.col.s11.m8.l6
-            input#nameAnimal(type='text')
-            label(for='nameAnimal')  Name Animal
-        .row
-          .input-field.col.s11.m8.l6
-            input#stateAnimal(type='text')
-            label(for='stateAnimal')  State
-        .row
-          .input-field.col.s11.m8.l6
-            input#costAnimal(type='number')
-            label(for='costAnimal')  Cost
-        .row
-          .input-field.col.s11.m8.l6
-            input#areaAnimal(type='text')
-            label(for='areaAnimal')  Area
-        .row
-          .input-field.col.s11.m8.l6
-            input#summaryAnimal(type='text')
-            label(for='summaryAnimal')  Summary
-        .row
-          .input-field.col.s12
-            a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
-      .container.centered
-        a#get-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') View all
+    #view
+      .view-button
+        a#get-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') View Animal
+        a#view-fb-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') View Feedback
+        a#add-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f')(href='http://localhost:3000/animal/') Add Animal
       br
       hr
-      .col.s12
-        table#list.striped
-          thead
-            tr
-              th Name 
-              th State
-              th Cost
-              th Area
-              th Summary
-              th
-          tbody
-            tr
-              td.name 
-              td 
-              td 
-              td 
-              td
-              td
-                //- i.material-icons.delete delete
-                //- i.material-icons.edit edit
+      .view-table
+        .col.s12
+          table#list.striped
+            thead
+              tr
+                th Name 
+                th State
+                th Cost
+                th Area
+                th Summary
+                th
+            tbody
+              tr
+                td.name 
+                td 
+                td 
+                td 
+                td
+                td
+                  //- i.material-icons.delete delete
+                  //- i.material-icons.edit edit

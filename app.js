@@ -5,7 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+var index = require('./routes/index')
+var animal = require('./routes/animal');
+var feedback = require('./routes/feedback');
 
 var app = express();
 
@@ -13,7 +15,7 @@ var mongoose = require('mongoose');
 Promise = require('bluebird'); // // make bluebird default Promise eslint-disable-line no-global-assign
 
 //Url address Database
-const mongoDb = 'mongodb://localhost:27017/animals'
+const mongoDb = 'mongodb://localhost:27017/ARanimal'
 
 // plugin bluebird promise in mongoose
 mongoose.Promise = Promise;
@@ -40,8 +42,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
- app.use('/', index);
-
+app.use('/', index)
+app.use('/animal', animal);
+app.use('/feedback', feedback);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

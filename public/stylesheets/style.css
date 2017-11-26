@@ -52,14 +52,24 @@
 .edit {
   cursor: pointer;
 }
-.centered {
-  display: flex;
+.centered, #view {
   justify-content: center;
   align-items: center;
+  margin-top: 3%;
 }
 
+.view-button{
+  margin-left: 30%;
+}
+
+#post-button, #edit-button, #add-button, #view-fb-button, #get-button{
+  margin: 5px;
+  align-items: center;
+  justify-content: center;
+}
 @media screen and (min-width: 480px) {
     .brand-logo {
       margin-left: 2%;
+
     }
 }

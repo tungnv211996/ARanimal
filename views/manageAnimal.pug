@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    #p.row
+        h4.col.s12 ARanimal: 
+        form.col.s12#form
+            .row
+            .col.s11.m8.l6
+                label(for='nameAnimal')  Name Animal
+                input#nameAnimal(type='text')
+            .row
+            .col.s11.m8.l6
+                label(for='stateAnimal')  State
+                input#stateAnimal(type='text')
+            .row
+            .col.s11.m8.l6
+                label(for='costAnimal')  Cost
+                input#costAnimal(type='number')
+            .row
+            .col.s11.m8.l6
+                label(for='areaAnimal')  Area
+                input#areaAnimal(type='text')
+            .row
+            .col.s11.m8.l6
+                label(for='summaryAnimal')  Summary
+                input#summaryAnimal(type='text')
+            .row
+            .col.s11.m8.l6
+            label(for='urlAnimal') File model
+            input#urlAnimal(type='file')
+            .row
+            .col.s12
+                a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
+                a#edit-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') EDIT
