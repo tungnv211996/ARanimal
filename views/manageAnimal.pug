@@ -3,7 +3,7 @@ extends layout
 block content
     #p.row
         h4.col.s12 ARanimal: 
-        form.col.s12#form
+        form.col.s12#form(enctype="mutilpart/form-data")
             .row
             .col.s11.m8.l6
                 label(for='nameAnimal')  Name Animal
@@ -27,7 +27,7 @@ block content
             .row
             .col.s11.m8.l6
             label(for='urlAnimal') File model
-            input#urlAnimal(type='file')
+            input#urlAnimal(type='file')(name='file')
             .row
             .col.s12
                 a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index')
 var animal = require('./routes/animal');
 var feedback = require('./routes/feedback');
+var file = require('./routes/file');
 
 var app = express();
 
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index)
 app.use('/animal', animal);
 app.use('/feedback', feedback);
+app.use('/file', file);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

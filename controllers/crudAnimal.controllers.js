@@ -12,7 +12,7 @@ module.exports = {
         costAnimal: req.body.costAnimal,
         areaAnimal: req.body.areaAnimal,
         summaryAnimal: req.body.summaryAnimal,
-        urlAnimal: [{url: String}]
+        urlAnimal: req.body.urlAnimal
         }).save(function(err){
             if(err){
                 res.status(504);
@@ -20,7 +20,7 @@ module.exports = {
             }else{
                 console.log('saved');
                 return res.status(200).json({
-                    message: 'You have successfully deleted a animal'
+                    message: 'You have successfully add a animal'
                 });
             }
         })

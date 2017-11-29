@@ -6,6 +6,7 @@ $(function () {
   var area;
   var summary;
   var idAnimal;
+  var path;
 
   $(".button-collapse").sideNav();
   // $('#p').hide();
@@ -46,18 +47,47 @@ $(function () {
 
   // POST function
   $(document).on('click', '#post-button', function() {
+    
+    var formData = new FormData();
+    formData.append('file', $('input[type=file]')[0].files[0]); 
+
+    //Post file
+    $.ajax({
+      url: '/file/api/save',
+      method: 'POST',
+      contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+      processData: false, // NEEDED, DON'T OMIT THIS
+      async: false,      
+      data: formData,
+      success: function(response){
+        // Materialize.toast(response.message, 4000);
+        path = response;
+        console.log(path);
+      }
+    })
+  
     getValueForm();
     // Post value
-      $.ajax({
-        url: '/animal/api/save',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({nameAnimal: name, stateAnimal:state, costAnimal: cost, areaAnimal: area, summaryAnimal: summary}),
-        success: function(response) {
-          $('#get-button').trigger('click');
-          Materialize.toast(response.message, 4000);
-        }
-      });
+    $.ajax({
+      url: '/animal/api/save',
+      method: 'POST',
+      contentType: 'application/json',
+      async: false, 
+      data: JSON.stringify({
+        nameAnimal: name, 
+        stateAnimal:state, 
+        costAnimal: cost, 
+        areaAnimal: area, 
+        summaryAnimal: summary, 
+        urlAnimal: path
+      }),
+      success: function(response) {
+        $('#get-button').trigger('click');
+        Materialize.toast(response.message, 4000);
+      }
+    });
+
+  
     }
   );
 

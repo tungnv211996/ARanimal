@@ -9,7 +9,7 @@ var animalSchema = new schema({
     costAnimal: Number,
     areaAnimal: String,
     summaryAnimal: String,
-    urlAnimal: [{url: String}]
+    urlAnimal: String
 })
 var Animal = mongoose.model('animals', animalSchema);
 
