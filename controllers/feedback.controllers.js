@@ -20,18 +20,20 @@ module.exports = {
     saveFeedback: function(req, res){
         var feedback = new feedbackModel({
             _id: new ObjectID(),
-            nameAnimal: req.body.nameAnimal,
-            userNameFeedback: req.body.userNameFeedback,
-            statusFeedback: req.body.statusFeedback,
-            titleFeedback: req.body.titleFeedback,
-            contentFeedback: req.body.contentFeedback
+            animalName: req.body.animalName,
+            userName: req.body.userNameFeedback,
+            status: req.body.statusFeedback,
+            title: req.body.titleFeedback,
+            content: req.body.contentFeedback
             }).save(function(err){
                 if(err){
                     res.status(504);
                     res.end();
                 }else{
                     console.log('saved');
-                    res.end();
+                    res.status(200).json({
+                        feedback: feedback
+                    });
                 }
             })
     },

@@ -4,7 +4,8 @@ var schema = mongoose.Schema;
 
 var feedbackSchema = new schema({
     _id: schema.Types.ObjectId,
-    username: String,
+    userName: String,
+    animalName: String,
     status: String,
     title: String,
     content: String

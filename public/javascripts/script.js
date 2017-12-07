@@ -12,6 +12,37 @@ $(function () {
   // $('#p').hide();
   $('#edit-button').hide();
 
+  //user
+
+  const HOST = 'http://127.0.0.1:3000'
+  $("#login").on("click", function (event) {
+    var username = $('#username').val();
+    var password =  $('#password').val();
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    $.ajax({
+      url: "/login",
+      method: 'POST',
+      contentType: 'application/json',
+      dataType: "json",
+      data: JSON.stringify({
+        username: username,
+        password: password
+      }),
+      success: function (result) {
+        localStorage.setItem('token',result.token)
+        localStorage.setItem('username', username)
+        //Materialize.toast('Loggin successful', 4000);
+        window.location.href = HOST + "/index";					
+      },
+      error: function (jqXHR, exc) {
+        let json = $.parseJSON(jqXHR.responseText)
+        Materialize.toast(json['status'], 4000);
+        
+      }
+    });
+  })
+
   // GET function
   $(document).on('click', '#get-button', function() {
 
@@ -19,14 +50,29 @@ $(function () {
     $('#form').hide();
 
     $.ajax({
-      url: '/animal/api/view',
+      url: '/api/view',
       method: 'GET',
       contentType: 'application/json',
+      headers: {
+        token: localStorage.getItem('token')
+      },
       success: function(res) {
         var data = res.animals;
-        // Clear the tbody
+        // Clear the thead, tbody
         $('tbody').html('');
+        $('thead').html('');
         // Loop and append
+
+        $('thead').append(
+          `  <tr>
+            <th>Name </th>
+            <th>State</th>
+            <th>Cost</th>
+            <th>Area</th>
+            <th>Summary</th>
+            <th></th>
+          </tr>`
+          )
         data.forEach(function print(animal) {
           $('tbody').append(
             '<tr>' +
@@ -45,6 +91,68 @@ $(function () {
     });
   });
 
+  //Get feedback
+  $(document).on('click', '#view-fb-button', function() {
+    
+        $('#view').show();
+        $('#form').hide();
+    
+        $.ajax({
+          url: '/api/viewfeedback',
+          method: 'GET',
+          contentType: 'application/json',
+          headers: {
+            token: localStorage.getItem('token')
+          },
+          success: function(res) {
+            var data = res.feedbacks;
+            // Clear the thead, tbody
+            $('tbody').html('');
+            $('thead').html('');
+            // Loop and append
+    
+            $('thead').append(
+              `  <tr>
+                <th>Animal </th>
+                <th>UserName</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Status</th>
+                <th></th>
+              </tr>`
+              )
+            data.forEach(function print(feedback) {
+              $('tbody').append(
+                '<tr>' +
+                "<td class='nameAnimal'>" + feedback.animalName +"</td>" +
+                "<td class='userNameFeedback'>" + feedback.userName + "</td>" +
+                "<td class='statusFeedback'>" + feedback.status + "</td>" + 
+                "<td class='titleFeedback'>" + feedback.title + "</td>" + 
+                "<td class='contentFeeback'>" + feedback.content + "</td>" + 
+                "<td><i class='material-icons delete-fb'>delete</i></td>" +
+                "<td><i class='material-icons accept'>accept</i></td>" +
+                "<td class='idFeedback' hidden>"+feedback._id+"</td>"+
+              '</tr>'
+              );
+            });
+          }
+        });
+      });
+      //ADD buttton
+  $(document).on('click', '#add-button', function(){
+     // console.log(localStorage.getItem('token'))
+    $.ajax({
+        url: '/api',
+        method: 'GET',
+        contentType: 'application/json',
+        headers: {
+          token: localStorage.getItem('token')
+        },
+        success: function(response){
+
+        }
+      })
+  })
   // POST function
   $(document).on('click', '#post-button', function() {
     
@@ -69,9 +177,12 @@ $(function () {
     getValueForm();
     // Post value
     $.ajax({
-      url: '/animal/api/save',
+      url: '/api/save',
       method: 'POST',
       contentType: 'application/json',
+      headers: {
+        token: localStorage.getItem('token')
+      },
       async: false, 
       data: JSON.stringify({
         nameAnimal: name, 
@@ -84,6 +195,7 @@ $(function () {
       success: function(response) {
         $('#get-button').trigger('click');
         Materialize.toast(response.message, 4000);
+        window.location.href = HOST + '/index';
       }
     });
 
@@ -96,9 +208,12 @@ $(function () {
     var del = $(this).closest('tr');
     idAnimal = del.find('.idAnimal').text();
     $.ajax({
-      url: '/animal/api/delete/'+idAnimal,
+      url: '/api/delete/'+idAnimal,
       method: 'PUT',
       contentType: 'application/json',
+      headers: {
+        token: localStorage.getItem('token')
+      },
       success: function(response) {
         Materialize.toast(response.message, 4000);
         $('#get-button').trigger('click');
@@ -106,12 +221,28 @@ $(function () {
     });
   });
 
+   //DELETE fb Button
+   $(document).on('click', '.delete-fb', function() {
+    var del = $(this).closest('tr');
+    idFeedback = del.find('.idFeedback').text();
+    $.ajax({
+      url: '/api/delete/'+idFeedback,
+      method: 'PUT',
+      contentType: 'application/json',
+      headers: {
+        token: localStorage.getItem('token')
+      },
+      success: function(response) {
+        Materialize.toast(response.message, 4000);
+        $('#get-button').trigger('click');
+      }
+    });
+  });
+
+
   //EDIT button
   $(document).on('click', '.edit', function(){
-    $('#view').hide();
-    $('#form').show();
-    $('#edit-button').show();
-    $('#post-button').hide();
+  
 
     var edt = $(this).closest('tr');
     $('#nameAnimal').val(edt.find('.nameAnimal').text());
@@ -126,24 +257,18 @@ $(function () {
     getValueForm();
     
     $.ajax({
-      url: '/animal/api/edit/'+idAnimal,
+      url: '/api/edit/'+idAnimal,
       method: 'PUT',
       contentType: 'application/json',
+      headers: {
+        token: localStorage.getItem('token')
+      },
       data: JSON.stringify({nameAnimal: name, stateAnimal:state, costAnimal: cost, areaAnimal: area, summaryAnimal: summary}),
       success: function(response) {
         Materialize.toast(response.message, 4000);
         $('#get-button').trigger('click');
       }
     });
-  });
-
-  // GET STARTED button function
-  $('.get-started').on('click', function() {
-    $('#o').fadeOut();
-    $('.get-started').text('');
-    $('#nav-side').hide();
-    $('#sidenav-overlay').hide();
-    $('.button-collapse').hide();
   });
 
   // Get the value from form
