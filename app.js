@@ -16,7 +16,7 @@ var mongoose = require('mongoose');
 Promise = require('bluebird'); // // make bluebird default Promise eslint-disable-line no-global-assign
 
 //Url address Database
-const mongoDb = 'mongodb://localhost:27017/ARanimal'
+const mongoDb = 'mongodb://tungnv211996:NguyenVanTung123@ds135196.mlab.com:35196/aranimal'
 
 // plugin bluebird promise in mongoose
 mongoose.Promise = Promise;
