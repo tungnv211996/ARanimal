@@ -26,7 +26,7 @@ userSchema.pre('save', function(next){
     }
 })
 
-var User = mongoose.model('Users', userSchema);
+var User = mongoose.model('User', userSchema);
 // User.create({username: 'admin', hashpass: 'admin'}, function (err, res){
 //     if(error || !result) console.log('Register failed')
 //     else console.log('Register successful')
