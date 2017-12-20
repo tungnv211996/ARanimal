@@ -8,11 +8,11 @@ module.exports = {
         var animal = new animalModel({
         _id: new ObjectID(),
         nameAnimal: req.body.nameAnimal,
-        stateAnimal: req.body.stateAnimal,
-        costAnimal: req.body.costAnimal,
-        areaAnimal: req.body.areaAnimal,
-        summaryAnimal: req.body.summaryAnimal,
-        urlAnimal: req.body.urlAnimal
+        status: req.body.stateAnimal,
+        cost: req.body.costAnimal,
+        area: req.body.areaAnimal,
+        summary: req.body.summaryAnimal,
+        url: req.body.urlAnimal
         }).save(function(err){
             if(err){
                 res.status(504);
@@ -39,6 +39,21 @@ module.exports = {
           }
         })
       },
+    findAnimalById: function(req, res){
+        var id = req.params.idAnimal;
+        var o_id = new ObjectID(id);
+        animalModel.findOne({_id:o_id}, function(err, animal) {
+            if (err) {
+              return res.status(500).json({
+                err: err || err.errmessage
+              })
+            } else {
+              return res.status(200).json({
+                animal: animal
+              })
+            }
+          })
+    },
     //Edit animal function. Client must to submit all properties.
     editAnimal: function(req, res){
         console.log(JSON.stringify(req.params.idAnimal));
@@ -50,10 +65,10 @@ module.exports = {
                 //$inc: {costAnimal: 5},
                 $set: {
                     nameAnimal: req.body.nameAnimal,    
-                    //stateAnimal: "active",
-                    costAnimal: req.body.costAnimal,
-                    areaAnimal: req.body.areaAnimal,
-                    summaryAnimal: req.body.summaryAnimal,
+                    status: req.body.statusAnimal,
+                    cost: req.body.costAnimal,
+                    area: req.body.areaAnimal,
+                    summary: req.body.summaryAnimal,
                 }
             },
             function(err){
@@ -78,7 +93,7 @@ module.exports = {
             {
                //$inc: {costAnimal: 5},
                 $set: {
-                    stateAnimal: "non-active",
+                    status: "non-active",
                 }
             },
             function(err){

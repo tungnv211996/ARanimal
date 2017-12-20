@@ -34,7 +34,6 @@ module.exports = {
     // },
     downFile: function(req, res){
         var file = 'uploads/'+ req.params.path;
-        console.log(file);
         res.download(file); // Set disposition and send it.
       },
 

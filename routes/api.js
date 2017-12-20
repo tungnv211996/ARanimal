@@ -7,7 +7,7 @@ const arudController = require('../controllers/crudAnimal.controllers')
 const Token = require('../model/Token')
 
 /* Get page animal*/
-router.get('', function(req, res, next) {
+router.get('/', function(req, res, next) {
     //res.redirect('api');
     res.render('manageAnimal');
 });
@@ -40,8 +40,11 @@ router.all('/*', (req, res, next) => {
 /* Create animal*/ 
 router.post('/save',arudController.createAnimal );
  
-/* Get animal*/
+/* Get animals*/
 router.get('/view', arudController.findAnimal);
+
+/*Get animal by id*/
+router.get('/view/:idAnimal', arudController.findAnimalById);
 /*Delete animal*/
 router.put('/delete/:idAnimal', arudController.deleteAnimal);
 //Edit animal
