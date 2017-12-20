@@ -72,6 +72,7 @@ $(function () {
       data: JSON.stringify({ nameAnimal: name, status: state, cost: cost, area: area, summary: summary }),
       success: function (response) {
         Materialize.toast(response.message, 4000);
+        window.location.href = HOST + '/index';
         $('#get-button').trigger('click');
       }
     });
