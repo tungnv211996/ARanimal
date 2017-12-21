@@ -15,8 +15,8 @@ $(function () {
   $('#get-button').trigger('click');
   //user
 
-  // const HOST = 'https://aranimal.herokuapp.com'
-  const HOST = 'http://localhost:3000'
+  const HOST = 'https://aranimal.herokuapp.com'
+  // const HOST = 'http://localhost:3000'
   $("#login").on("click", function (event) {
     var username = $('#username').val();
     var password = $('#password').val();

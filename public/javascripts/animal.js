@@ -45,7 +45,7 @@ $(function () {
       },
       success: function (res) {
         $('#nameAnimal').val(res.animal.nameAnimal)
-        console.log(res)
+        // console.log(res)
         // $('#urlAnimal').val(res.animal.url);
         $('#stateAnimal').val(res.animal.status)
         $('#costAnimal').val(res.animal.cost)
