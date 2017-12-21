@@ -4,14 +4,12 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    // Latest compiled and minified CSS
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    // jQuery library
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-    // Latest compiled JavaScript
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
     meta(charset='utf-8')
-    script(src='https://code.jquery.com/jquery-2.2.3.min.js')
+    //- script(src='https://code.jquery.com/jquery-2.2.3.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js')
     script(src='../javascripts/animal.js')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css')
@@ -23,6 +21,7 @@ html
       .nav-wrapper.pink.darken-4(class='#ff4081')
         a#font.brand-logo ARanimal     
     #p.row
+
         form.col.s12#form(enctype="mutilpart/form-data")
             .row
             .col.s11.m8.l6
@@ -40,6 +39,8 @@ html
             .col.s11.m8.l6
                 label(for='areaAnimal')  Area
                 input#areaAnimal(type='text')
+            .row.col.s11.m8.l6
+                
             .row
             .col.s11.m8.l6
                 label(for='summaryAnimal')  Summary
