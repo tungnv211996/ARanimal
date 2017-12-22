@@ -59,7 +59,7 @@ $(function () {
         token: localStorage.getItem('token')
       },
       success: function (res) {
-        var data = res.animals;
+        var data = res;
         // Clear the thead, tbody
         $('tbody').html('');
         $('thead').html('');

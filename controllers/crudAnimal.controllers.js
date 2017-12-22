@@ -33,9 +33,9 @@ module.exports = {
               err: err || err.errmessage
             })
           } else {
-            return res.status(200).json({
-              animals: animals
-            })
+            return res.status(200).json(
+              animals
+            )
           }
         })
       },
