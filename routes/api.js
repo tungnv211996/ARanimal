@@ -3,8 +3,9 @@ var router = express.Router();
 const animalModel = require('../model/animal.model');
 const feedbackModel = require('../model/feedback.model');
 const feedbackControllers = require('../controllers/feedback.controllers');
-const arudController = require('../controllers/crudAnimal.controllers')
-const Token = require('../model/Token')
+const arudAnimalController = require('../controllers/crudAnimal.controllers');
+const arudAreaController = require('../controllers/crudArea.controllers')
+const Token = require('../model/Token');
 
 /* Get page animal*/
 router.get('/', function(req, res, next) {
@@ -38,27 +39,35 @@ router.all('/*', (req, res, next) => {
   })
 
 /* Create animal*/ 
-router.post('/save',arudController.createAnimal );
- 
+router.post('/save',arudAnimalController.createAnimal );
 /* Get animals*/
-router.get('/view', arudController.findAnimal);
-
+router.get('/view', arudAnimalController.findAnimal);
 /*Get animal by id*/
-router.get('/view/:idAnimal', arudController.findAnimalById);
+router.get('/view/:idAnimal', arudAnimalController.findAnimalById);
 /*Delete animal*/
-router.put('/delete/:idAnimal', arudController.deleteAnimal);
+router.put('/delete/:idAnimal', arudAnimalController.deleteAnimal);
 //Edit animal
-router.put('/edit/:idAnimal', arudController.editAnimal);
+router.put('/edit/:idAnimal', arudAnimalController.editAnimal);
 
 //view feedback
 router.get('/viewfeedback', feedbackControllers.findAllFeedback);
-
 //save feedback
 router.post('/savefeedback', feedbackControllers.saveFeedback);
-
 //check feedback
 router.put('/checkfeedback/:idFeedback', feedbackControllers.checkFeedback);
   
+/* Create area*/ 
+router.post('/area',arudAreaController.createArea );
+/* Create area*/ 
+router.post('/areaarr',arudAreaController.createAreaArray );
+//Edit area
+router.put('/area/:id', arudAreaController.editArea);
+/*Get area by id*/
+router.get('/area/:id', arudAreaController.findAreaById);
+/* Get areas*/
+router.get('/area', arudAreaController.findArea);
+
+
 module.exports = router;
 
 
