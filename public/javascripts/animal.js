@@ -11,6 +11,7 @@ $(function () {
 
   // const HOST = 'http://localhost:3000'
   const HOST = 'https://aranimal.herokuapp.com'
+  document.getElementById("urlAnimal").multiple = true;
 
   var functions = {
     GetURLParameter: function (sParam) {
@@ -71,7 +72,6 @@ $(function () {
       },
       data: JSON.stringify({ nameAnimal: name, status: state, cost: cost, area: area, summary: summary }),
       success: function (response) {
-        Materialize.toast(response.message, 4000);
         window.location.href = HOST + '/index';
         $('#get-button').trigger('click');
       }
@@ -81,8 +81,11 @@ $(function () {
   // POST function
   $(document).on('click', '#post-button', function () {
 
+    var model = $('#urlAnimal')[0].files[0];
+    var image = $('#urlImage')[0].files[0];
     var formData = new FormData();
-    formData.append('file', $('input[type=file]')[0].files[0]);
+    formData.append('file', model);
+    formData.append('file', image);
 
     //Post file
     $.ajax({
@@ -99,6 +102,9 @@ $(function () {
       }
     })
 
+ 
+
+    
     functions.getValueForm();
     // Post value
     $.ajax({
@@ -114,10 +120,10 @@ $(function () {
         costAnimal: cost,
         areaAnimal: area,
         summaryAnimal: summary,
-        urlAnimal: path
+        urlAnimal: path.model,
+        imageAnimal: path.image
       }),
       success: function (response) {
-        Materialize.toast(response.message, 4000);
         window.location.href = HOST + '/index';
         $('#get-button').trigger('click');
 

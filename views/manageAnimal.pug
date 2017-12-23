@@ -4,9 +4,9 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    //- link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    //- script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    //- script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
 
     meta(charset='utf-8')
     script(src='https://code.jquery.com/jquery-2.2.3.min.js')
@@ -17,12 +17,12 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     
   body
+  
     nav
       .nav-wrapper.pink.darken-4(class='#ff4081')
         a#font.brand-logo ARanimal     
     #p.row
-
-        form.col.s12#form(enctype="mutilpart/form-data")
+        form.col-md-4#form(enctype="mutilpart/form-data")
             .row
             .col.s11.m8.l6
                 label(for='nameAnimal')  Name Animal
@@ -42,7 +42,7 @@ html
             .row
             //- .col.s11.m8.l6
             //-     label.checkbox-inline
-            //-     input(type='checkbox', value='gia tri')
+            //-     input(type='checkbox', value='')
             //-     | Châu á
             //-     label.checkbox-inline
             //-     input(type='checkbox', value='')
@@ -59,6 +59,54 @@ html
             label(for='urlAnimal') File model
             input#urlAnimal(type='file')(name='file')
             .row
+            .col.s11.m8.l6
+            label(for='urlImage') File image
+            input#urlImage(type='file')(name='file')
+            .row
             .col.s12
                 a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
                 a#edit-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') EDIT
+//-     nav
+//-       .nav-wrapper.pink.darken-4(class='#ff4081')
+//-         a#font.brand-logo ARanimal     
+//-     #p.row
+//-         form.col.s12#form(enctype="mutilpart/form-data")
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label(for='nameAnimal')  Name Animal
+//-                 input#nameAnimal(type='text')
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label(for='stateAnimal')  State
+//-                 input#stateAnimal(type='text')
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label(for='costAnimal')  Cost
+//-                 input#costAnimal(type='number')
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label(for='areaAnimal')  Area
+//-                 input#areaAnimal(type='text')
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label.checkbox-inline
+//-                 input(type='checkbox', value='')
+//-                 | Châu á
+//-                 label.checkbox-inline
+//-                 input(type='checkbox', value='')
+//-                 | Châu á
+//-                 label.checkbox-inline
+//-                 input(type='checkbox', value='')
+//-                 | Châu á               
+//-             .row
+//-             .col.s11.m8.l6
+//-                 label(for='summaryAnimal')  Summary
+//-                 input#summaryAnimal(type='text')
+//-             .row
+//-             .col.s11.m8.l6
+//-             label(for='urlAnimal') File model
+//-             input#urlAnimal(type='file')(name='file')
+//-             .row
+//-             .col.s12
+//-                 a#post-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') Add
+//-                 a#edit-button.waves-effect.waves-light.btn.pink.darken-4(class='#880e4f') EDIT

@@ -7,10 +7,15 @@ var formidable = require('formidable');
 module.exports = {
 
      saveFile: function(req, res){
-    
-        var path = req.file.filename;
-        console.log(path);
-        res.end(path);
+        var image = req.files[1].filename;
+        var model = req.files[0].filename;
+       
+              return res.status(200).json({
+                  image: image,
+                  model: model
+              });
+  
+      
         
  },
     //function(req, res){

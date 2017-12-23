@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
   
   var upload = multer({ storage: storage })
 
-router.post('/api/save', upload.single("file"), fileControllers.saveFile);
+router.post('/api/save', upload.array('file', 2), fileControllers.saveFile);
 
 router.get('/api/down/:path', fileControllers.downFile);
 
