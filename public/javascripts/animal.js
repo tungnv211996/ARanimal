@@ -70,7 +70,7 @@ $(function () {
       headers: {
         token: functions.GetURLParameter('token')
       },
-      data: JSON.stringify({ nameAnimal: name, status: state, cost: cost, area: area, summary: summary }),
+      data: JSON.stringify({ name: name, status: state, cost: cost, area: area, summary: summary }),
       success: function (response) {
         window.location.href = HOST + '/index';
         $('#get-button').trigger('click');
