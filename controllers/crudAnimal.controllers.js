@@ -65,11 +65,13 @@ module.exports = {
             {
                 //$inc: {costAnimal: 5},
                 $set: {
-                    nameAnimal: req.body.name,
-                    status: req.body.status,
-                    cost: req.body.cost,
-                    area: req.body.area,
-                    summary: req.body.summary,
+                    nameAnimal: req.body.nameAnimal,
+                    status: req.body.stateAnimal,
+                    cost: req.body.costAnimal,
+                    area: req.body.areaAnimal,
+                    summary: req.body.summaryAnimal,
+                    url: req.body.urlAnimal,
+                    image: req.body.imageAnimal
                 }
             },
             function (err) {

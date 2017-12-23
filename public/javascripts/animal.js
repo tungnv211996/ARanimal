@@ -58,11 +58,37 @@ $(function () {
     $('#edit-button').hide()
     $('#post-button').show()
   }
-
+  //EDIT
   $(document).on('click', '#edit-button', function () {
 
     functions.getValueForm();
     idAnimal = functions.GetURLParameter('idAnimal')
+    var model = $('#urlAnimal')[0].files[0];
+    var image = $('#urlImage')[0].files[0];
+    var formData = new FormData();
+    formData.append('file', model);
+    formData.append('file', image);
+
+    //Post file
+    $.ajax({
+      url: '/file/api/save',
+      method: 'POST',
+      contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+      processData: false, // NEEDED, DON'T OMIT THIS
+      async: false,
+      data: formData,
+      success: function (response) {
+        // Materialize.toast(response.message, 4000);
+        path = response;
+        console.log(path);
+      }
+    })
+
+ 
+
+    
+    functions.getValueForm();
+    // Post value
     $.ajax({
       url: '/api/edit/' + idAnimal,
       method: 'PUT',
@@ -70,10 +96,19 @@ $(function () {
       headers: {
         token: functions.GetURLParameter('token')
       },
-      data: JSON.stringify({ name: name, status: state, cost: cost, area: area, summary: summary }),
+      data: JSON.stringify({
+        nameAnimal: name,
+        stateAnimal: state,
+        costAnimal: cost,
+        areaAnimal: area,
+        summaryAnimal: summary,
+        urlAnimal: path.model,
+        imageAnimal: path.image
+      }),
       success: function (response) {
         window.location.href = HOST + '/index';
         $('#get-button').trigger('click');
+
       }
     });
   });
@@ -112,7 +147,7 @@ $(function () {
       method: 'POST',
       contentType: 'application/json',
       headers: {
-        token: localStorage.getItem('token')
+        token: functions.GetURLParameter('token')
       },
       data: JSON.stringify({
         nameAnimal: name,
