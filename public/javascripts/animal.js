@@ -76,6 +76,9 @@ $(function () {
       contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
       processData: false, // NEEDED, DON'T OMIT THIS
       async: false,
+            headers: {
+        token: functions.GetURLParameter('token')
+      },
       data: formData,
       success: function (response) {
         // Materialize.toast(response.message, 4000);
