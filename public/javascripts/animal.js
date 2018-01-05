@@ -37,6 +37,7 @@ $(function () {
   if(check){
     $('#post-button').hide()
     $('#edit-button').show()
+    console.log('a')
     $.ajax({
       url: '/api/view/' + functions.GetURLParameter('idAnimal'),
       method: 'GET',
