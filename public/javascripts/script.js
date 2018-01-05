@@ -191,7 +191,7 @@ $(function () {
         token: localStorage.getItem('token')
       },
       success: function (response) {
-        window.location.href = HOST + "/api/?idAnimal=" + idAnimal + "&token=" + localStorage.getItem('token') + "&check=" + localStorage.getItem('check')
+        window.location.href = HOST + "/api/?token=" + localStorage.getItem('token') + "&check=" + localStorage.getItem('check')
 
       }
     })
