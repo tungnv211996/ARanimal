@@ -34,7 +34,7 @@ $(function () {
     }
   }
   var check =  functions.GetURLParameter('check')
-  if(check == true){
+  if(check == 'true'){
     $('#post-button').hide()
     $('#edit-button').show()
     console.log('a')
