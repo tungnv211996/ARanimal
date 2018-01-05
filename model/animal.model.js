@@ -7,7 +7,8 @@ var animalSchema = new schema({
     nameAnimal: String,
     status: String,
     cost: Number,
-    area: [{type: mongoose.Schema.Types.ObjectId, ref: 'Area'}],
+    //area: [{type: mongoose.Schema.Types.ObjectId, ref: 'Area'}],
+    area: String,
     summary: String,
     url: String,
     image: String
