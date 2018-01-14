@@ -13,7 +13,8 @@ module.exports = {
             area: req.body.areaAnimal,
             summary: req.body.summaryAnimal,
             url: req.body.urlAnimal,
-            image: req.body.imageAnimal
+            image: req.body.imageAnimal,
+            tester: req.body.testerAnimal
         }).save(function (err) {
             if (err) {
                 res.status(504);
@@ -71,7 +72,8 @@ module.exports = {
                     area: req.body.areaAnimal,
                     summary: req.body.summaryAnimal,
                     url: req.body.urlAnimal,
-                    image: req.body.imageAnimal
+                    image: req.body.imageAnimal,
+                    tester: req.body.testerAnimal
                 }
             },
             function (err) {

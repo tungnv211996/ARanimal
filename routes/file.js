@@ -16,6 +16,8 @@ var storage = multer.diskStorage({
 
 router.post('/api/save', upload.array('file', 2), fileControllers.saveFile);
 
+router.post('/api/save/tester', upload.array('file', 6), fileControllers.saveTester);
+
 router.get('/api/down/:path', fileControllers.downFile);
 
 module.exports = router;

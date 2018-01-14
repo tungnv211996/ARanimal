@@ -11,7 +11,8 @@ var animalSchema = new schema({
     area: String,
     summary: String,
     url: String,
-    image: String
+    image: String,
+    tester: [String]
 })
 var Animal = mongoose.model('animals', animalSchema);
 

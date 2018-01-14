@@ -7,7 +7,9 @@ $(function () {
   var area;
   var summary;
   var idAnimal;
-  var path
+  var path;
+  var pathTester;
+  var checkTester =0;
 
   // const HOST = 'http://localhost:3000'
   const HOST = 'https://aranimal.herokuapp.com'
@@ -69,6 +71,15 @@ $(function () {
     var formData = new FormData();
     formData.append('file', model);
     formData.append('file', image);
+    var formData1 = new FormData();
+    if($('#tester0').length) formData1.append('file', $('#tester0')[0].files[0]);
+    if($('#tester1').length) formData1.append('file', $('#tester1')[0].files[0]);
+    if($('#tester2').length) formData1.append('file', $('#tester2')[0].files[0]);
+    if($('#tester3').length) formData1.append('file', $('#tester3')[0].files[0]);
+    if($('#tester4').length) formData1.append('file', $('#tester4')[0].files[0]);
+    if($('#tester5').length) formData1.append('file', $('#tester5')[0].files[0]);
+    if($('#tester6').length) formData1.append('file', $('#tester6')[0].files[0]);
+
 
     //Post file
     $.ajax({
@@ -89,6 +100,22 @@ $(function () {
     })
 
  
+    $.ajax({
+      url: '/file/api/save/tester',
+      method: 'POST',
+      contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+      processData: false, // NEEDED, DON'T OMIT THIS
+      async: false,
+            headers: {
+        token: functions.GetURLParameter('token')
+      },
+      data: formData1,
+      success: function (response) {
+        // Materialize.toast(response.message, 4000);
+        pathTester = response.path;
+        console.log(pathTester);
+      }
+    })
 
     
     functions.getValueForm();
@@ -107,7 +134,8 @@ $(function () {
         areaAnimal: area,
         summaryAnimal: summary,
         urlAnimal: path.model,
-        imageAnimal: path.image
+        imageAnimal: path.image,
+        testerAnimal: pathTester
       }),
       success: function (response) {
         window.location.href = HOST + '/index';
@@ -125,6 +153,14 @@ $(function () {
     var formData = new FormData();
     formData.append('file', model);
     formData.append('file', image);
+    var formData1 = new FormData();
+    if($('#tester0').length) formData1.append('file', $('#tester0')[0].files[0]);
+    if($('#tester1').length) formData1.append('file', $('#tester1')[0].files[0]);
+    if($('#tester2').length) formData1.append('file', $('#tester2')[0].files[0]);
+    if($('#tester3').length) formData1.append('file', $('#tester3')[0].files[0]);
+    if($('#tester4').length) formData1.append('file', $('#tester4')[0].files[0]);
+    if($('#tester5').length) formData1.append('file', $('#tester5')[0].files[0]);
+    if($('#tester6').length) formData1.append('file', $('#tester6')[0].files[0]);
 
     //Post file
     $.ajax({
@@ -143,6 +179,24 @@ $(function () {
         console.log(path);
       }
     })
+
+    $.ajax({
+      url: '/file/api/save/tester',
+      method: 'POST',
+      contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+      processData: false, // NEEDED, DON'T OMIT THIS
+      async: false,
+            headers: {
+        token: functions.GetURLParameter('token')
+      },
+      data: formData1,
+      success: function (response) {
+        // Materialize.toast(response.message, 4000);
+        pathTester = response.path;
+        console.log(pathTester);
+      }
+    })
+
 
  
 
@@ -163,7 +217,8 @@ $(function () {
         areaAnimal: area,
         summaryAnimal: summary,
         urlAnimal: path.model,
-        imageAnimal: path.image
+        imageAnimal: path.image,
+        testerAnimal: pathTester
       }),
       success: function (response) {
         window.location.href = HOST + '/index';
@@ -175,5 +230,14 @@ $(function () {
 
   }
   );
+  $(document).on('click', '#add-tester', function () {
+    if(checkTester>6){
+      Materialize.toast('Bạn đã nhập nhiều hơn 10', 4000);     
+    }else {
+    $('#urlTester').after('<input type="file" class="image" id="tester' + checkTester + '" name="image" />');
+    $('#urlTester').off('change');
+    checkTester++;
+    }
+  })
 
 })
